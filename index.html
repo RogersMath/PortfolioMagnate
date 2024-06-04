@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Magnate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Portfolio Magnate</h1>
+        <div id="game-state"></div>
+        <div id="controls">
+            <label for="labor-hours">Labor Hours:</label>
+            <input type="number" id="labor-hours" value="4" min="0" max="12">
+            <label for="research-hours">Research Hours:</label>
+            <input type="number" id="research-hours" value="4" min="0" max="12">
+            <label for="leisure-hours">Leisure Hours:</label>
+            <input type="number" id="leisure-hours" value="4" min="0" max="12">
+            <button onclick="takeTurn()">Take Turn</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
