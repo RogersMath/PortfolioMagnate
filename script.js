@@ -1,28 +1,16 @@
 function takeTurn() {
-    const laborHours = document.getElementById('labor-hours').value;
-    const researchHours = document.getElementById('research-hours').value;
-    const leisureHours = document.getElementById('leisure-hours').value;
+    const laborHours = parseInt(document.getElementById('labor-hours').value);
+    const researchHours = parseInt(document.getElementById('research-hours').value);
+    const leisureHours = parseInt(document.getElementById('leisure-hours').value);
 
-    fetch('http://localhost:5000/take-turn', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            labor_hours: laborHours,
-            research_hours: researchHours,
-            leisure_hours: leisureHours
-        }),
-    })
-    .then(response => response.json())
-    .then(data => {
+    // Call the Python function to process the turn
+    eel.process_turn(laborHours, researchHours, leisureHours)(function(game_state) {
         document.getElementById('game-state').innerHTML = `
-            <p>Time: ${data.time}</p>
-            <p>Dollars: ${data.dollars}</p>
-            <p>Psyche: ${data.psyche}</p>
-            <p>Status: ${data.status}</p>
-            <p>Portfolio: ${JSON.stringify(data.portfolio)}</p>
+            <p>Time: ${game_state.time}</p>
+            <p>Dollars: ${game_state.dollars}</p>
+            <p>Psyche: ${game_state.psyche}</p>
+            <p>Status: ${game_state.status}</p>
+            <p>Portfolio: ${JSON.stringify(game_state.portfolio)}</p>
         `;
-    })
-    .catch(error => console.error('Error:', error));
+    });
 }
